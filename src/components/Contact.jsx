@@ -3,10 +3,11 @@ import { AiFillEdit } from "react-icons/ai";
 
 const Contact = ({ contact }) => {
   const { fullName, email, phoneNumber, image, birthDate } = contact;
+  const folder = import.meta.env.VITE_IMAGE_URL;
   return (
     <div className="w-[17rem] shadow-md shadow-gray-400 overflow-hidden rounded-lg">
       <img
-        src={image}
+        src={folder + image}
         alt="contactImg"
         className="w-full h-[12rem] object-cover"
       />
@@ -14,7 +15,7 @@ const Contact = ({ contact }) => {
         <p className="">Full Name: {fullName}</p>
         <p>Email: {email}</p>
         <p>Phone number: {phoneNumber}</p>
-        <p>Date of birth: {birthDate}</p>
+        <p>Date of birth: {birthDate.split("T")[0]}</p>
       </div>
       <div className="p-3 flex items-center justify-end gap-2">
         <button type="button" className="text-red-700 hover:opacity-75">
