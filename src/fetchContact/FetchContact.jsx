@@ -30,6 +30,21 @@ export const addContact = async (data) => {
     return response.newContact;
   } catch (error) {
     throw new Error(error);
-    console.log("addContact Function in FetchContact: ", error);
+  }
+};
+
+export const removeContact = async (id) => {
+  try {
+    await axios.delete(`${baseURL}/api/contact/delete/${id}`);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const updateContact = async (contact) => {
+  try {
+    await axios.put(`${baseURL}/api/contact/update/${contact._id}`, contact);
+  } catch (error) {
+    throw new Error(error);
   }
 };
