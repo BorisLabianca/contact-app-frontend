@@ -9,7 +9,6 @@ const Contact = ({ contact }) => {
   const navigate = useNavigate();
   const { fullName, email, phoneNumber, image, birthDate, _id } = contact;
   const { update, setUpdate } = ContactContextShare();
-  const folder = import.meta.env.VITE_IMAGE_URL;
   const queryClient = useQueryClient();
   const { mutate, isLoading, isError } = useMutation(
     ["contact", _id],
@@ -27,7 +26,7 @@ const Contact = ({ contact }) => {
   return (
     <div className="w-[17rem] shadow-md shadow-gray-400 overflow-hidden rounded-lg">
       <img
-        src={folder + image}
+        src={image.url}
         alt="contactImg"
         className="w-full h-[12rem] object-cover"
       />

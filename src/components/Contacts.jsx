@@ -63,7 +63,7 @@ const data1 = [
 const Contacts = () => {
   const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery("contact", getAllData);
-  console.log(data);
+  // console.log(data);
   return (
     <div className="w-[80%] mx-auto my-[3rem] border-2 border-blue-100 shadow-md shadow-gray-400 rounded-lg">
       <h1 className="p-6 text-center flex-1 text-2xl font-bold text-gray-700">

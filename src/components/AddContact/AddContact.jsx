@@ -7,7 +7,7 @@ import { ContactContextShare } from "../../context/Context";
 const AddContact = () => {
   const navigate = useNavigate();
   const { update, setUpdate } = ContactContextShare();
-  console.log(update);
+  // console.log(update);
 
   const [contact, setContact] = useState({
     fullName: "",
@@ -55,6 +55,7 @@ const AddContact = () => {
     }
   };
   if (isError) return "Something went wrong.";
+  if (updateError) return "Something went wrong.";
 
   return (
     <section>

@@ -12,21 +12,32 @@ export const getAllData = async () => {
 };
 
 export const addContact = async (data) => {
-  if (data?.image) {
-    const formData = new FormData();
-    const imageName = Date.now() + data.image.name;
-    formData.append("name", imageName);
-    formData.append("file", data.image);
-    data.image = imageName;
+  // if (data?.image) {
+  //   const formData = new FormData();
+  //   const imageName = Date.now() + data.image.name;
+  //   formData.append("name", imageName);
+  //   formData.append("file", data.image);
+  //   data.image = imageName;
 
-    try {
-      await axios.post(`${baseURL}/api/upload`, formData);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
+  //   try {
+  //     await axios.post(`${baseURL}/api/upload`, formData);
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // }
   try {
-    const response = await axios.post(`${baseURL}/api/contact/create`, data);
+    console.log(data);
+    const formData = new FormData();
+    // const imageName = Date.now() + data.image.name;
+    formData.append("file", data.image);
+    formData.append("fullName", data.fullName);
+    formData.append("email", data.email);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("birthDate", data.birthDate);
+    const response = await axios.post(
+      `${baseURL}/api/contact/create`,
+      formData
+    );
     return response.newContact;
   } catch (error) {
     throw new Error(error);
@@ -41,9 +52,22 @@ export const removeContact = async (id) => {
   }
 };
 
-export const updateContact = async (contact) => {
+export const updateContact = async (data) => {
+  console.log("From update: ", data.image);
   try {
-    await axios.put(`${baseURL}/api/contact/update/${contact._id}`, contact);
+    const newFormData = new FormData();
+    // const imageName = Date.now() + data.image.name;
+    newFormData.append("file", data.image);
+    newFormData.append("fullName", data.fullName);
+    newFormData.append("email", data.email);
+    newFormData.append("phoneNumber", data.phoneNumber);
+    newFormData.append("birthDate", data.birthDate);
+    const response = await axios.put(
+      `${baseURL}/api/contact/update/${data._id}`,
+      newFormData
+    );
+    console.log(response);
+    // return response.newContact;
   } catch (error) {
     throw new Error(error);
   }
